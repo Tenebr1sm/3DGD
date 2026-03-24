@@ -4,7 +4,7 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 28
-  productGUID: 3c0c4509da1f4f143b2acb06c675013a
+  productGUID: 78ba22708e4b0144a9ae6d055bba8ce0
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
@@ -13,7 +13,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: DefaultCompany
-  productName: 3D_GD
+  productName: 3DGD
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -846,14 +846,14 @@ PlayerSettings:
   editorAssembliesCompatibilityLevel: 1
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
-  metroPackageName: 3D_GD
+  metroPackageName: 3DGD
   metroPackageVersion: 
   metroCertificatePath: 
   metroCertificatePassword: 
   metroCertificateSubject: 
   metroCertificateIssuer: 
   metroCertificateNotAfter: 0000000000000000
-  metroApplicationDescription: 3D_GD
+  metroApplicationDescription: 3DGD
   wsaImages: {}
   metroTileShortName: 
   metroTileShowName: 0
@@ -922,13 +922,13 @@ PlayerSettings:
   qnxGraphicConfPath: 
   apiCompatibilityLevel: 6
   captureStartupLogs: {}
-  activeInputHandler: 2
+  activeInputHandler: 1
   windowsGamepadBackendHint: 0
-  cloudProjectId: 3cb1881f-253f-44d5-ab7d-a7607888d35e
+  cloudProjectId: ada77c93-779d-4560-ace8-ed736b7e490d
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: 3D_GD
-  organizationId: tenebr1sm
+  projectName: 3DGD 2026-03-11_21-28-50
+  organizationId: maarong2001
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   hmiLoadingImage: {fileID: 0}

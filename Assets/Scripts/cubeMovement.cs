@@ -14,12 +14,23 @@ public class cubeMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY;
+        // rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY;
     }
 
     void Update()
     {
-        if (Keyboard.current.spaceKey.wasPressedThisFrame && isGrounded)
+
+        // if (Keyboard.current.spaceKey.wasPressedThisFrame && isGrounded)
+        // {
+        //     Jump();
+        // }
+
+        if (Keyboard.current.spaceKey.isPressed && isGrounded)
+        {
+            Jump();
+        }
+
+        if (Mouse.current.leftButton.isPressed && isGrounded)
         {
             Jump();
         }
@@ -28,10 +39,12 @@ public class cubeMovement : MonoBehaviour
     void FixedUpdate()
     {
         rb.linearVelocity = new Vector3(0, rb.linearVelocity.y, moveSpeed);
+        // transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
     }
 
     void Jump()
     {
+        isGrounded = false;
         rb.linearVelocity = new Vector3(0, 0, rb.linearVelocity.z);
         rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
 
@@ -65,25 +78,25 @@ public class cubeMovement : MonoBehaviour
     }
 
     private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
         {
-            if (collision.gameObject.CompareTag("Ground"))
-            {
-                isGrounded = true;
-            }
-
-            if (collision.gameObject.CompareTag("Spike"))
-            {
-                Die();
-            }
+            isGrounded = true;
         }
 
-        void Die()
+        if (collision.gameObject.CompareTag("Spike"))
         {
-            Destroy(gameObject);
-
-            Debug.Log("cube is die");
-
-            //closes game when die
-            UnityEditor.EditorApplication.isPlaying = false;
+            Die();
         }
+    }
+
+    void Die()
+    {
+        Destroy(gameObject);
+
+        Debug.Log("cube is die");
+
+        //closes game when die
+        UnityEditor.EditorApplication.isPlaying = false;
+    }
 }

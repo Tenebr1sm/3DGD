@@ -20,11 +20,6 @@ public class cubeMovement : MonoBehaviour
     void Update()
     {
 
-        // if (Keyboard.current.spaceKey.wasPressedThisFrame && isGrounded)
-        // {
-        //     Jump();
-        // }
-
         if (Keyboard.current.spaceKey.isPressed && isGrounded)
         {
             Jump();
@@ -92,11 +87,9 @@ public class cubeMovement : MonoBehaviour
 
     void Die()
     {
-        Destroy(gameObject);
-
         Debug.Log("cube is die");
 
-        //closes game when die
-        UnityEditor.EditorApplication.isPlaying = false;
+        transform.position = new Vector3(0, 1, 0);
+
     }
 }

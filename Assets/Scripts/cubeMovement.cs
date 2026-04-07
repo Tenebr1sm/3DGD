@@ -1,8 +1,11 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class cubeMovement : MonoBehaviour
 {
+    public GameObject winScreen;
+
     [Header("Movement")]
     public float moveSpeed;
     public float jumpForce;
@@ -10,11 +13,15 @@ public class cubeMovement : MonoBehaviour
     private Rigidbody rb;
     private bool isGrounded;
     private bool isRotating = false;
+    private bool isLevelFinished = false;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         // rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY;
+
+        if (winScreen != null)
+            winScreen.SetActive(false);
     }
 
     void Update()
@@ -33,6 +40,8 @@ public class cubeMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (isLevelFinished) return;
+
         rb.linearVelocity = new Vector3(0, rb.linearVelocity.y, moveSpeed);
         // transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
     }
@@ -85,11 +94,39 @@ public class cubeMovement : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Goal"))
+        {
+            Win();
+        }
+    }
+
     void Die()
     {
         Debug.Log("cube is die");
 
         transform.position = new Vector3(0, 1, 0);
 
+    }
+
+    void Win()
+    {
+        isLevelFinished = true; // Switch the movement off
+        rb.isKinematic = true;  // Stop physics interactions
+
+        if (winScreen != null) winScreen.SetActive(true);
+
+        Time.timeScale = 0f;
+
+        // Unlock the mouse so you can click the button
+        //Cursor.lockState = CursorLockMode.None;
+        //Cursor.visible = true;
+    }
+
+    public void RestartGame()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
